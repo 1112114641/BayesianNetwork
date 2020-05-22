@@ -1,0 +1,7 @@
+causalnex==0.6.0
+ipython==7.13.0
+matplotlib==3.2.1
+pandas==0.24.0
+pygraphviz==1.5
+scikit-learn==0.22.2post1
+seaborn==0.10.1
