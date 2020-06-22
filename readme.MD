@@ -68,13 +68,18 @@ As a real world application, let's take a look at the [wine quality dataset](htt
 A quick look at the data reveals, that, besides wine `colour` and `quality`, all variables follow a roughly log-normal shape. The correlations matrix, which contains the correlation between each of the variables, shows that only alcohol (0.44) and density (-0.31) show a certain correlation to the wine quality. 
 
 Creating a directed acyclic graph (DAG) to describe data, if done exactly, is computationally quite expensive, as the structure finding problem scales super exponential with the amount of variables/nodes. A shortcut to circumvent this is the [NOTEARS-algorithm](https://papers.nips.cc/paper/8157-dags-with-no-tears-continuous-optimization-for-structure-learning.pdf), which reduces the computational complexity to about O(n³). 
-In this case, the NOTEARS inferred graph was augmented with "expert knowledge" of an infrequent wine drinker, and some edges added, some removed.
+In this case, the NOTEARS inferred graph was augmented with "expert knowledge" (of an infrequent wine drinker 😉), and some edges added, some removed.
 
-![Figure 7: Final DAG of the wine dataset.](structure_model.png)
+![Figure 8: Final DAG of the wine dataset.](structure_model.png)
 
-Fit to Problem 84.4% AUC
+Obtaining the conditional probability distributions (CPD) on a train set consisting of 85% of the from this table yields a model with a good AUC of 84.4%. The area under curve (AUC) is a good measure of classification model quality, in the case of a [balanced dataset](https://medium.com/eliiza-ai/modelling-rare-events-c169cb081d8b). A perfect model would have an AUC=1, in this example that would imply every wine is correctly classified. As a comparison, a model classifying wine at random e.g. by throwing a 6-sided dice, would yield an AUC=1/2. If your AUC is smaller than 1/2, your model is terribly bad, as it is worse than random output.
 
-###### TABLE 1 cpd table
+The AUC is determined from the reciever operator curve (ROC),
+
+![Figure 9: ROC curve with indicated AUC](ROC.png)
+
+
+###### TABLE 1 cpd table THE ABOVE FIGURE IS ACTUALLY PRECSION(X) V RECALL(Y) do remember to relabel! -.-
 
 At this point, for the first time the bayesian nature of the problem enters. throu
 As a graph, it would look something like this:
